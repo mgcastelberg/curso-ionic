@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" defaultHref="/inicio"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="primary">List - Reorder</ion-title>
+
+    <ion-button slot="end" (click)="onClick()" fill="clear" shape="round">
+      {{ activar ? 'Enable' : 'Disable'}}
+    </ion-button>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list-header lines="inset" color="primary">
+    <ion-label>Personajes DC</ion-label>
+  </ion-list-header>
+
+  <ion-list>
+    <ion-reorder-group [disabled]="activar" (ionItemReorder)="doReorder( $event )">
+      <ion-item *ngFor="let personaje of personajes" >
+        <ion-label>{{ personaje }}</ion-label>
+        <ion-reorder slot="end"></ion-reorder>
+      </ion-item>     
+    </ion-reorder-group>
+
+    <ion-list-header lines="inset" color="primary">
+      <ion-label>Personajes Marvel</ion-label>
+    </ion-list-header>
+
+    <ion-reorder-group [disabled]="activar" (ionItemReorder)="doReorder2( $event )">
+      <ion-item *ngFor="let marv of marvel" >
+        <ion-label>{{ marv }}</ion-label>
+        <ion-reorder slot="start">
+          <ion-icon name="pizza"></ion-icon>
+        </ion-reorder>
+      </ion-item>     
+    </ion-reorder-group>
+
+
+  </ion-list>
+
+</ion-content>
